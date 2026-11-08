@@ -54,7 +54,7 @@ export function Navbar() {
         </Link>
 
         {/* Center / Right Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-1 bg-navy-surface/40 backdrop-blur-md px-4 py-1.5 rounded-full border border-navy-border/50">
+        <nav className="hidden md:flex items-center gap-1.5 bg-navy-surface/50 backdrop-blur-xl px-4 py-1.5 rounded-full border border-white/[0.08] shadow-[0_8px_32px_rgba(0,0,0,0.3)]">
           {NAV_ITEMS.map((item) => {
             const isActive =
               item.href === "/"
@@ -67,10 +67,10 @@ export function Navbar() {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`relative px-4 py-1.5 text-xs font-mono tracking-wider transition-colors duration-200 rounded-full ${
+                className={`relative px-4 py-1.5 text-xs font-mono tracking-wider transition-all duration-200 rounded-full ${
                   isActive
-                    ? "text-electric-blue font-semibold bg-electric-blue/10"
-                    : "text-canvas-muted hover:text-canvas-white hover:bg-navy-surface/60"
+                    ? "text-electric-blue font-semibold bg-electric-blue/15 shadow-[0_0_12px_rgba(56,189,248,0.25)]"
+                    : "text-canvas-muted hover:text-canvas-white hover:bg-white/[0.05]"
                 }`}
               >
                 {item.label}
@@ -83,7 +83,7 @@ export function Navbar() {
         <div className="hidden md:flex items-center gap-4">
           <Link
             href="/contact"
-            className="group relative inline-flex items-center gap-2 px-5 py-2 rounded-full text-xs font-mono tracking-wider uppercase bg-electric-blue text-obsidian font-bold overflow-hidden transition-all duration-300 hover:bg-electric-cyan hover:shadow-[0_0_20px_rgba(87,200,255,0.4)]"
+            className="group relative inline-flex items-center gap-2 px-5 py-2 rounded-full text-xs font-mono tracking-wider uppercase bg-gradient-to-r from-electric-blue to-electric-cyan text-obsidian font-extrabold overflow-hidden transition-all duration-300 hover:shadow-[0_0_25px_rgba(56,189,248,0.45)] hover:scale-[1.03]"
           >
             <span>LET&apos;S TALK</span>
             <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />

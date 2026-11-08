@@ -42,7 +42,7 @@ export function MatrixStreamBackground() {
         y: Math.random() * height,
         speed: 0.4 + Math.random() * 0.8,
         char: tokens[Math.floor(Math.random() * tokens.length)],
-        opacity: 0.04 + Math.random() * 0.12,
+        opacity: 0.02 + Math.random() * 0.05,
       });
     }
 
@@ -62,7 +62,7 @@ export function MatrixStreamBackground() {
           col.y = -20;
           col.char = tokens[Math.floor(Math.random() * tokens.length)];
           col.speed = 0.4 + Math.random() * 0.8;
-          col.opacity = 0.04 + Math.random() * 0.12;
+          col.opacity = 0.02 + Math.random() * 0.05;
         }
 
         // Randomly mutate characters occasionally
@@ -85,7 +85,7 @@ export function MatrixStreamBackground() {
   return (
     <canvas
       ref={canvasRef}
-      className="pointer-events-none fixed inset-0 z-0 opacity-80"
+      className="pointer-events-none fixed inset-0 z-0 opacity-40 mix-blend-screen"
       aria-hidden="true"
     />
   );

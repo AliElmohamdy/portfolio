@@ -9,25 +9,27 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        obsidian: "#080B12",
+        obsidian: "#05070D",
         navy: {
-          deep: "#0D1422",
-          surface: "#121A2A",
-          card: "#152033",
-          border: "#1E2C44",
+          deep: "#090E1A",
+          surface: "#0F1728",
+          card: "#131D31",
+          border: "#1C2942",
         },
         electric: {
-          blue: "#57C8FF",
-          cyan: "#79DDFF",
-          glow: "rgba(87, 200, 255, 0.35)",
+          blue: "#38BDF8",
+          cyan: "#67E8F9",
+          glow: "rgba(56, 189, 248, 0.4)",
         },
         accent: {
-          purple: "#8B77FF",
+          purple: "#A855F7",
+          emerald: "#10B981",
+          amber: "#F59E0B",
         },
         canvas: {
-          white: "#F4F7FF",
-          muted: "#9BAAC3",
-          subtle: "#62728C",
+          white: "#F8FAFC",
+          muted: "#94A3B8",
+          subtle: "#64748B",
         },
       },
       fontFamily: {

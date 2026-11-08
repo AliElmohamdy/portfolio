@@ -5,8 +5,8 @@
 @tailwind utilities;
 
 :root {
-  --background: #080B12;
-  --foreground: #F4F7FF;
+  --background: #05070D;
+  --foreground: #F8FAFC;
 }
 
 * {
@@ -15,14 +15,14 @@
 
 html {
   scroll-behavior: smooth;
-  background-color: #080B12;
-  color: #F4F7FF;
+  background-color: #05070D;
+  color: #F8FAFC;
   color-scheme: dark;
 }
 
 body {
-  background-color: #080B12;
-  color: #F4F7FF;
+  background-color: #05070D;
+  color: #F8FAFC;
   overflow-x: hidden;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-feature-settings: "rlig" 1, "calt" 1;
@@ -47,10 +47,20 @@ body {
 
 /* Subtle Technical Grid Background */
 .tech-grid {
-  background-size: 48px 48px;
+  background-size: 56px 56px;
   background-image: 
-    linear-gradient(to right, rgba(30, 44, 68, 0.25) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(30, 44, 68, 0.25) 1px, transparent 1px);
+    linear-gradient(to right, rgba(28, 41, 66, 0.18) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(28, 41, 66, 0.18) 1px, transparent 1px);
+}
+
+/* Aurora ambient light gradients */
+.aurora-bg {
+  position: absolute;
+  filter: blur(140px);
+  border-radius: 9999px;
+  pointer-events: none;
+  opacity: 0.18;
+  mix-blend-mode: screen;
 }
 
 .tech-dots {

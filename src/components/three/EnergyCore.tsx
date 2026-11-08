@@ -91,23 +91,28 @@ function CodeHypercubeMesh({ mouse }: { mouse: React.MutableRefObject<{ x: numbe
       <Float speed={2.2} rotationIntensity={0.2} floatIntensity={0.35}>
         {/* Core Luminous Code Crystal (Center) */}
         <mesh ref={innerSolidBoxRef}>
-          <boxGeometry args={[0.7, 0.7, 0.7]} />
-          <meshStandardMaterial
-            color="#57C8FF"
-            emissive="#57C8FF"
-            emissiveIntensity={2.2}
-            roughness={0.1}
-            metalness={0.9}
+          <boxGeometry args={[0.74, 0.74, 0.74]} />
+          <meshPhysicalMaterial
+            color="#38BDF8"
+            emissive="#0284C7"
+            emissiveIntensity={0.6}
+            roughness={0.05}
+            metalness={0.1}
+            transmission={0.9}
+            ior={1.55}
+            thickness={1.5}
+            transparent={true}
+            opacity={0.95}
           />
         </mesh>
 
         {/* Floating Geometric Wireframe Diamond inside */}
         <mesh ref={coreIcosahedronRef}>
-          <octahedronGeometry args={[0.95, 0]} />
+          <octahedronGeometry args={[0.98, 0]} />
           <meshStandardMaterial
-            color="#79DDFF"
-            emissive="#57C8FF"
-            emissiveIntensity={1.0}
+            color="#67E8F9"
+            emissive="#38BDF8"
+            emissiveIntensity={0.8}
             wireframe={true}
             roughness={0.1}
           />
@@ -115,36 +120,38 @@ function CodeHypercubeMesh({ mouse }: { mouse: React.MutableRefObject<{ x: numbe
 
         {/* Outer Architectural Code Monolith Wireframe (Cube) */}
         <mesh ref={outerWireBoxRef}>
-          <boxGeometry args={[1.5, 1.5, 1.5]} />
+          <boxGeometry args={[1.56, 1.56, 1.56]} />
           <meshStandardMaterial
-            color="#8B77FF"
-            emissive="#8B77FF"
-            emissiveIntensity={0.8}
+            color="#C084FC"
+            emissive="#818CF8"
+            emissiveIntensity={0.4}
             wireframe={true}
             roughness={0.2}
-            metalness={0.8}
+            metalness={0.7}
+            transparent={true}
+            opacity={0.75}
           />
         </mesh>
 
         {/* Orbit Ring 1 (Electric Blue Code Ring) */}
         <mesh ref={ring1Ref}>
-          <torusGeometry args={[1.85, 0.03, 16, 80]} />
+          <torusGeometry args={[1.75, 0.038, 24, 128]} />
           <meshStandardMaterial
-            color="#57C8FF"
-            emissive="#57C8FF"
-            emissiveIntensity={0.7}
-            metalness={0.95}
+            color="#38BDF8"
+            emissive="#38BDF8"
+            emissiveIntensity={0.85}
+            metalness={0.9}
             roughness={0.1}
           />
         </mesh>
 
-        {/* Orbit Ring 2 (Deep Navy / Purple Horizon Ring) */}
+        {/* Orbit Ring 2 (Cyber Purple Horizon Ring) */}
         <mesh ref={ring2Ref}>
-          <torusGeometry args={[2.1, 0.035, 16, 96]} />
+          <torusGeometry args={[1.98, 0.042, 24, 128]} />
           <meshStandardMaterial
-            color="#8B77FF"
-            emissive="#1E2C44"
-            emissiveIntensity={0.4}
+            color="#A855F7"
+            emissive="#7E22CE"
+            emissiveIntensity={0.6}
             metalness={0.9}
             roughness={0.15}
           />
@@ -190,12 +197,12 @@ export function EnergyCore() {
       className="relative w-full h-full min-h-[500px] lg:min-h-[660px] flex items-center justify-center cursor-grab active:cursor-grabbing select-none overflow-visible"
     >
       {/* Dynamic ambient layered developer glow */}
-      <div className="absolute inset-0 bg-radial-gradient from-electric-blue/15 via-accent-purple/5 to-transparent pointer-events-none rounded-full blur-3xl" />
-      <div className="absolute w-80 h-80 rounded-full bg-electric-cyan/10 blur-[90px] pointer-events-none" />
+      <div className="absolute inset-0 bg-radial-gradient from-electric-blue/20 via-accent-purple/10 to-transparent pointer-events-none rounded-full blur-3xl animate-pulse-subtle" />
+      <div className="absolute w-80 h-80 rounded-full bg-electric-cyan/15 blur-[100px] pointer-events-none" />
 
       {/* R3F Canvas - generous camera distance & fov so NOTHING gets cut off */}
       <Canvas
-        camera={{ position: [0, 0, 8.2], fov: 40 }}
+        camera={{ position: [0, 0, 7.2], fov: 46 }}
         dpr={[1, 2]}
         gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
         className="w-full h-full relative z-10 overflow-visible"
@@ -209,11 +216,11 @@ export function EnergyCore() {
           </div>
         }
       >
-        <ambientLight intensity={0.7} />
-        <directionalLight position={[6, 8, 5]} intensity={1.8} color="#F4F7FF" />
-        <pointLight position={[-4, -3, -2]} intensity={3.2} color="#57C8FF" distance={18} />
-        <pointLight position={[3, -4, 2]} intensity={2.5} color="#8B77FF" distance={18} />
-        <pointLight position={[0, 4, 3]} intensity={1.8} color="#79DDFF" distance={12} />
+        <ambientLight intensity={0.8} />
+        <directionalLight position={[6, 8, 5]} intensity={2.2} color="#F8FAFC" />
+        <pointLight position={[-4, -3, -2]} intensity={3.5} color="#38BDF8" distance={20} />
+        <pointLight position={[3, -4, 2]} intensity={3.0} color="#A855F7" distance={20} />
+        <pointLight position={[0, 4, 3]} intensity={2.2} color="#67E8F9" distance={15} />
         <CodeHypercubeMesh mouse={mouse} />
       </Canvas>
     </div>

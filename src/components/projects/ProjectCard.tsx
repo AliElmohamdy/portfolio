@@ -50,7 +50,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
         transform: `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
         transition: isHovered ? "transform 0.08s ease-out" : "transform 0.5s ease-out",
       }}
-      className="relative group rounded-3xl border border-navy-border/60 bg-gradient-to-b from-navy-surface/50 via-navy-deep/60 to-obsidian/80 backdrop-blur-xl p-8 lg:p-10 transition-all duration-300 hover:border-electric-blue/50 hover:shadow-[0_10px_40px_-10px_rgba(87,200,255,0.2)] overflow-hidden"
+      className="relative group rounded-3xl border border-white/[0.08] bg-gradient-to-b from-navy-surface/40 via-navy-deep/60 to-obsidian/90 backdrop-blur-2xl p-8 lg:p-10 transition-all duration-300 hover:border-electric-blue/40 hover:shadow-[0_12px_45px_-10px_rgba(87,200,255,0.18)] overflow-hidden"
     >
       {/* Dynamic Cursor Spotlight Following Pointer */}
       <div

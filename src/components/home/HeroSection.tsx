@@ -26,8 +26,9 @@ const EnergyCore = dynamic(
 export function HeroSection() {
   return (
     <section className="relative min-h-screen pt-28 pb-16 flex flex-col justify-center overflow-hidden tech-grid">
-      {/* Background radial atmosphere */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-electric-blue/5 rounded-full blur-[120px] pointer-events-none" />
+      {/* Background aurora gradients */}
+      <div className="aurora-bg top-[-100px] left-1/4 w-[650px] h-[450px] bg-electric-blue" />
+      <div className="aurora-bg top-[30%] right-[-100px] w-[550px] h-[550px] bg-accent-purple" />
 
       <div className="max-w-7xl mx-auto px-6 sm:px-8 w-full relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         {/* Left Column: Headline & Editorial Narrative */}
@@ -50,12 +51,12 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.15 }}
-            className="space-y-1"
+            className="space-y-2"
           >
-            <h1 className="font-display text-4xl sm:text-6xl xl:text-7xl font-extrabold tracking-tight text-canvas-white leading-[1.08]">
-              BUILDING THE <br />
-              <span className="text-electric-blue drop-shadow-[0_0_25px_rgba(87,200,255,0.45)]">
-                IMPOSSIBLE.
+            <h1 className="font-display text-4xl sm:text-6xl xl:text-7xl font-extrabold tracking-tight text-canvas-white leading-[1.06]">
+              ENGINEERING <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-electric-blue via-electric-cyan to-accent-purple drop-shadow-[0_0_35px_rgba(56,189,248,0.4)]">
+                THE EXCEPTIONAL.
               </span>
             </h1>
           </motion.div>
@@ -75,19 +76,19 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.45 }}
-            className="flex flex-wrap items-center gap-4 pt-2"
+            className="flex flex-wrap items-center gap-4 pt-3"
           >
             <Link
               href="#projects"
-              className="group relative inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full bg-electric-blue text-obsidian font-mono text-xs font-bold tracking-wider uppercase transition-all duration-300 hover:bg-electric-cyan hover:shadow-[0_0_25px_rgba(87,200,255,0.5)]"
+              className="group relative inline-flex items-center gap-2.5 px-8 py-4 rounded-full bg-gradient-to-r from-electric-blue to-electric-cyan text-obsidian font-mono text-xs font-extrabold tracking-wider uppercase transition-all duration-300 hover:shadow-[0_0_30px_rgba(56,189,248,0.5)] hover:scale-[1.02]"
             >
-              <span>EXPLORE MY WORK</span>
+              <span>EXPLORE WORK</span>
               <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </Link>
 
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-navy-border/80 bg-navy-surface/40 hover:bg-navy-surface hover:border-electric-blue/50 text-canvas-white font-mono text-xs font-semibold tracking-wider uppercase transition-all duration-300"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-full border border-white/[0.12] bg-navy-surface/50 hover:bg-navy-surface/80 hover:border-electric-blue/50 text-canvas-white font-mono text-xs font-semibold tracking-wider uppercase transition-all duration-300 backdrop-blur-md"
             >
               <span>GET IN TOUCH</span>
             </Link>
@@ -115,9 +116,9 @@ export function HeroSection() {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, delay: 0.3 }}
-          className="lg:col-span-5 relative flex items-center justify-center"
+          className="lg:col-span-5 relative flex items-center justify-center overflow-visible"
         >
-          <div className="w-full aspect-square max-w-[500px] relative">
+          <div className="w-full aspect-square max-w-[560px] relative overflow-visible">
             <EnergyCore />
           </div>
         </motion.div>

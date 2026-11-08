@@ -4,6 +4,7 @@ import { siteConfig } from "@/data/site";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { MatrixStreamBackground } from "@/components/effects/MatrixStreamBackground";
+import { MouseFollower } from "@/components/effects/MouseFollower";
 
 export const viewport: Viewport = {
   themeColor: siteConfig.themeColor,
@@ -74,6 +75,8 @@ export default function RootLayout({
       <body className="bg-obsidian text-canvas-white min-h-screen selection:bg-electric-blue/30 selection:text-white flex flex-col antialiased relative">
         {/* Ambient Moving Matrix & Binary 01 Code Background */}
         <MatrixStreamBackground />
+        {/* Dynamic Interactive Mouse Atmosphere Glow */}
+        <MouseFollower />
 
         <Navbar />
         <main className="flex-1 w-full relative z-10">{children}</main>
