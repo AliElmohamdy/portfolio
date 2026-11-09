@@ -9,22 +9,17 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        obsidian: "#05070D",
+        obsidian: "#0A0D14",
         navy: {
-          deep: "#090E1A",
-          surface: "#0F1728",
-          card: "#131D31",
-          border: "#1C2942",
+          deep: "#0F1420",
+          surface: "#141B2B",
+          card: "#192236",
+          border: "#232F48",
         },
         electric: {
           blue: "#38BDF8",
-          cyan: "#67E8F9",
-          glow: "rgba(56, 189, 248, 0.4)",
-        },
-        accent: {
-          purple: "#A855F7",
-          emerald: "#10B981",
-          amber: "#F59E0B",
+          cyan: "#38BDF8",
+          glow: "rgba(56, 189, 248, 0.15)",
         },
         canvas: {
           white: "#F8FAFC",

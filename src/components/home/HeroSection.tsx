@@ -2,141 +2,95 @@
 
 import React from "react";
 import Link from "next/link";
-import dynamic from "next/dynamic";
 import { siteConfig } from "@/data/site";
-import { AnimatedLogo } from "@/components/brand/AnimatedLogo";
-import { ArrowDown, ArrowUpRight } from "lucide-react";
-import { motion } from "framer-motion";
-
-// Dynamically import Three.js Energy Core to maintain snappy SSR
-const EnergyCore = dynamic(
-  () => import("@/components/three/EnergyCore").then((mod) => mod.EnergyCore),
-  {
-    ssr: false,
-    loading: () => (
-      <div className="w-full h-full min-h-[420px] flex items-center justify-center">
-        <div className="w-48 h-48 rounded-full border border-electric-blue/20 flex items-center justify-center animate-pulse">
-          <div className="w-24 h-24 rounded-full bg-electric-blue/10 blur-xl" />
-        </div>
-      </div>
-    ),
-  }
-);
+import { ArrowUpRight } from "lucide-react";
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-screen pt-28 pb-16 flex flex-col justify-center overflow-hidden tech-grid">
-      {/* Background aurora gradients */}
-      <div className="aurora-bg top-[-100px] left-1/4 w-[650px] h-[450px] bg-electric-blue" />
-      <div className="aurora-bg top-[30%] right-[-100px] w-[550px] h-[550px] bg-accent-purple" />
+    <section className="relative min-h-[85vh] pt-32 pb-24 flex flex-col justify-center border-b border-navy-border/60 overflow-hidden">
+      {/* Ambient background atmosphere effects */}
+      <div
+        className="pointer-events-none absolute -top-40 right-0 w-[600px] h-[600px] rounded-full opacity-20 blur-[130px]"
+        style={{
+          background: "radial-gradient(circle, #38BDF8 0%, rgba(56, 189, 248, 0) 70%)",
+        }}
+        aria-hidden="true"
+      />
+      <div
+        className="pointer-events-none absolute bottom-0 right-1/4 w-[500px] h-[400px] rounded-full opacity-10 blur-[110px]"
+        style={{
+          background: "radial-gradient(circle, #60A5FA 0%, rgba(96, 165, 250, 0) 70%)",
+        }}
+        aria-hidden="true"
+      />
 
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 w-full relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-        {/* Left Column: Headline & Editorial Narrative */}
-        <div className="lg:col-span-7 flex flex-col items-start gap-6">
-          {/* Status Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-navy-surface/80 border border-navy-border/80 text-[11px] font-mono tracking-wider text-canvas-white shadow-sm"
-          >
-            <span className="w-2 h-2 rounded-full bg-electric-blue animate-pulse" />
-            <span className="text-electric-cyan font-semibold">{siteConfig.status}</span>
-            <span className="text-canvas-subtle">•</span>
-            <span className="text-canvas-muted">{siteConfig.role}</span>
-          </motion.div>
+      {/* Subtle geometric dot grid pattern in the background */}
+      <div
+        className="pointer-events-none absolute inset-0 opacity-[0.07]"
+        style={{
+          backgroundImage:
+            "radial-gradient(rgba(248, 250, 252, 0.6) 1px, transparent 1px)",
+          backgroundSize: "32px 32px",
+        }}
+        aria-hidden="true"
+      />
+
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 w-full relative z-10">
+        <div className="max-w-3xl flex flex-col items-start gap-8">
+          {/* Status Line */}
+          <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-md bg-navy-surface border border-navy-border text-xs font-mono text-canvas-muted">
+            <span className="w-2 h-2 rounded-full bg-emerald-400" />
+            <span className="text-canvas-white font-medium">Available for projects</span>
+            <span className="text-canvas-subtle">/</span>
+            <span>{siteConfig.role}</span>
+          </div>
 
           {/* Main Headline */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.15 }}
-            className="space-y-2"
-          >
-            <h1 className="font-display text-4xl sm:text-6xl xl:text-7xl font-extrabold tracking-tight text-canvas-white leading-[1.06]">
-              ENGINEERING <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-electric-blue via-electric-cyan to-accent-purple drop-shadow-[0_0_35px_rgba(56,189,248,0.4)]">
-                THE EXCEPTIONAL.
-              </span>
+          <div className="space-y-4">
+            <h1 className="font-display text-4xl sm:text-6xl xl:text-7xl font-bold tracking-tight text-canvas-white leading-[1.06]">
+              Full-Stack Developer &amp; Systems Builder.
             </h1>
-          </motion.div>
-
-          {/* Verified Developer Introduction */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.3 }}
-            className="text-canvas-muted text-base sm:text-lg max-w-xl leading-relaxed font-sans"
-          >
-            {siteConfig.summary}
-          </motion.p>
+            <p className="text-canvas-muted text-lg sm:text-xl max-w-2xl leading-relaxed font-sans">
+              I build production-grade web applications, custom Discord automation engines,
+              and targeted internal tools that solve operational bottlenecks.
+            </p>
+          </div>
 
           {/* Action CTAs */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.45 }}
-            className="flex flex-wrap items-center gap-4 pt-3"
-          >
+          <div className="flex flex-wrap items-center gap-4 pt-2">
             <Link
               href="#projects"
-              className="group relative inline-flex items-center gap-2.5 px-8 py-4 rounded-full bg-gradient-to-r from-electric-blue to-electric-cyan text-obsidian font-mono text-xs font-extrabold tracking-wider uppercase transition-all duration-300 hover:shadow-[0_0_30px_rgba(56,189,248,0.5)] hover:scale-[1.02]"
+              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-lg bg-electric-blue text-obsidian font-mono text-xs font-bold uppercase tracking-wider transition-colors hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-electric-blue"
             >
-              <span>EXPLORE WORK</span>
-              <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              <span>View Case Studies</span>
+              <ArrowUpRight className="w-4 h-4" />
             </Link>
 
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-full border border-white/[0.12] bg-navy-surface/50 hover:bg-navy-surface/80 hover:border-electric-blue/50 text-canvas-white font-mono text-xs font-semibold tracking-wider uppercase transition-all duration-300 backdrop-blur-md"
+              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-lg border border-navy-border bg-navy-surface text-canvas-white font-mono text-xs font-semibold uppercase tracking-wider transition-colors hover:border-canvas-muted hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-electric-blue"
             >
-              <span>GET IN TOUCH</span>
+              <span>Get in Touch</span>
             </Link>
-          </motion.div>
-
-          {/* Logo Reveal Preview Mini Lockup */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 0.6 }}
-            className="pt-6 flex items-center gap-4 border-t border-navy-border/30 w-full max-w-lg"
-          >
-            <AnimatedLogo size={36} />
-            <div className="flex flex-col text-xs font-mono text-canvas-subtle">
-              <span className="text-canvas-muted font-bold tracking-wider">
-                {siteConfig.name}
-              </span>
-              <span>{siteConfig.secondaryTagline}</span>
-            </div>
-          </motion.div>
-        </div>
-
-        {/* Right Column: 3D Energy Core Sculpture */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, delay: 0.3 }}
-          className="lg:col-span-5 relative flex items-center justify-center overflow-visible"
-        >
-          <div className="w-full aspect-square max-w-[560px] relative overflow-visible">
-            <EnergyCore />
           </div>
-        </motion.div>
-      </div>
 
-      {/* Subtle Scroll Indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1, duration: 0.8 }}
-        className="mt-12 flex flex-col items-center justify-center gap-2 text-canvas-subtle"
-      >
-        <span className="font-mono text-[10px] uppercase tracking-[0.3em]">
-          SCROLL TO EXPLORE
-        </span>
-        <ArrowDown className="w-3.5 h-3.5 text-electric-blue animate-bounce" />
-      </motion.div>
+          {/* Meta specs metrics row */}
+          <div className="pt-8 mt-2 grid grid-cols-3 gap-8 sm:gap-12 border-t border-navy-border/60 w-full max-w-xl">
+            <div>
+              <div className="font-mono text-2xl font-bold text-canvas-white">4+</div>
+              <div className="text-xs text-canvas-muted mt-0.5">Production Systems</div>
+            </div>
+            <div>
+              <div className="font-mono text-2xl font-bold text-canvas-white">Next.js &amp; React</div>
+              <div className="text-xs text-canvas-muted mt-0.5">Primary Core Stack</div>
+            </div>
+            <div>
+              <div className="font-mono text-2xl font-bold text-canvas-white">Discord &amp; API</div>
+              <div className="text-xs text-canvas-muted mt-0.5">Automation &amp; Bots</div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
   );
 }
-

@@ -1,98 +1,103 @@
 "use client";
 
 import React from "react";
-import { siteConfig } from "@/data/site";
-import {
-  Code2,
-  Bot,
-  Layers,
-  Cpu,
-  Sparkles,
-  GraduationCap,
-  Briefcase,
-  Terminal,
-} from "lucide-react";
+import { Briefcase } from "lucide-react";
 
 export function AboutSection() {
-  const iconsMap: Record<string, React.ReactNode> = {
-    fullstack: <Code2 className="w-5 h-5 text-electric-blue" />,
-    discord: <Bot className="w-5 h-5 text-electric-cyan" />,
-    apps: <Layers className="w-5 h-5 text-accent-purple" />,
-    automation: <Cpu className="w-5 h-5 text-electric-blue" />,
-    "problem-solving": <Sparkles className="w-5 h-5 text-electric-cyan" />,
-    "continuous-learning": <GraduationCap className="w-5 h-5 text-accent-purple" />,
-  };
+  const highlights = [
+    {
+      id: "fullstack",
+      title: "Full-Stack Web Engineering",
+      role: "Architecture & Implementation",
+      description:
+        "Building responsive web applications using Next.js, React, and TypeScript with clean server-side rendering and structured API routes.",
+      points: ["Next.js (App Router) & React 18", "REST & Serverless Endpoints", "Tailwind CSS & Responsive Layouts"],
+    },
+    {
+      id: "discord",
+      title: "Discord & Realtime Automation",
+      role: "System Development",
+      description:
+        "Developing scalable event-driven bots, moderation workflows, and study productivity systems supporting active communities.",
+      points: ["Discord.js & Python Bot Engines", "Stateful timers & Pomodoro routines", "Persistent SQLite / Database logging"],
+    },
+    {
+      id: "workflow",
+      title: "Operations & HR Coordination",
+      role: "Context @ Amrix",
+      description:
+        "Bridging software development with team operations and communication as HR at Amrix, ensuring tools serve real human workflows.",
+      points: ["Cross-functional communication", "Process documentation & automation", "Internal operations support"],
+    },
+  ];
 
   return (
-    <section id="about" className="py-24 sm:py-32 relative">
+    <section id="about" className="py-20 sm:py-28 relative border-t border-navy-border/60">
       <div className="max-w-7xl mx-auto px-6 sm:px-8">
         {/* Section Header */}
-        <div className="max-w-3xl mb-16">
-          <div className="inline-flex items-center gap-2 font-mono text-xs text-electric-blue uppercase tracking-[0.25em] mb-3">
-            <span className="w-2 h-2 rounded-full bg-electric-blue" />
-            <span>Identity & Philosophy</span>
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 border-b border-navy-border/60 pb-8">
+          <div>
+            <span className="text-xs font-mono uppercase tracking-wider text-canvas-subtle">
+              Background &amp; Focus
+            </span>
+            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-canvas-white mt-1">
+              Engineering with Purpose
+            </h2>
           </div>
-          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-canvas-white">
-            THE MIND BEHIND THE CODE.
-          </h2>
-          <p className="mt-5 text-canvas-muted text-base sm:text-lg leading-relaxed font-sans">
-            &ldquo;{siteConfig.biography}&rdquo;
+          <p className="text-canvas-muted text-sm sm:text-base max-w-md font-sans">
+            A developer who pairs technical implementation with operational discipline and clear communication.
           </p>
         </div>
 
-        {/* Bento Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {siteConfig.bentoHighlights.map((item) => (
+        {/* Structured 3-column capability grid shaped by real roles */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {highlights.map((item) => (
             <div
               key={item.id}
-              className="relative rounded-2xl border border-navy-border/60 bg-navy-surface/40 backdrop-blur-md p-7 flex flex-col justify-between hover:border-electric-blue/40 hover:bg-navy-surface/70 transition-all duration-300 group"
+              className="rounded-xl border border-navy-border bg-navy-surface p-7 flex flex-col justify-between"
             >
               <div>
-                <div className="flex items-center justify-between mb-5">
-                  <div className="p-2.5 rounded-xl bg-navy-deep border border-navy-border/80 group-hover:border-electric-blue/50 transition-colors">
-                    {iconsMap[item.id] || <Terminal className="w-5 h-5 text-electric-blue" />}
-                  </div>
-                  <span className="font-mono text-[10px] tracking-wider uppercase text-canvas-subtle px-2 py-0.5 rounded bg-navy-deep/80 border border-navy-border/40">
-                    {item.category}
-                  </span>
+                <div className="text-xs font-mono text-electric-blue uppercase tracking-wider mb-2">
+                  {item.role}
                 </div>
-                <h3 className="font-display text-lg font-bold text-canvas-white group-hover:text-electric-cyan transition-colors mb-2">
+                <h3 className="font-display text-xl font-bold text-canvas-white mb-3">
                   {item.title}
                 </h3>
-                <p className="text-canvas-muted text-sm leading-relaxed">
+                <p className="text-canvas-muted text-sm leading-relaxed mb-6 font-sans">
                   {item.description}
                 </p>
               </div>
 
-              <div className="mt-6 pt-4 border-t border-navy-border/30 flex items-center justify-between text-xs font-mono text-canvas-subtle">
-                <span>Domain Focus</span>
-                <span className="text-electric-blue font-semibold">{item.stats}</span>
+              <div className="space-y-2 pt-4 border-t border-navy-border/60">
+                {item.points.map((pt, idx) => (
+                  <div key={idx} className="flex items-center gap-2 text-xs font-mono text-canvas-muted">
+                    <span className="w-1.5 h-1.5 rounded-full bg-electric-blue/60" />
+                    <span>{pt}</span>
+                  </div>
+                ))}
               </div>
             </div>
           ))}
         </div>
 
         {/* Corporate Role Callout */}
-        <div className="mt-12 rounded-2xl border border-navy-border/70 bg-gradient-to-r from-navy-deep via-navy-surface to-navy-deep p-6 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+        <div className="mt-8 rounded-xl border border-navy-border bg-navy-surface/60 p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div className="flex items-center gap-4">
-            <div className="p-3 rounded-xl bg-electric-blue/10 border border-electric-blue/20 text-electric-blue">
-              <Briefcase className="w-6 h-6" />
+            <div className="p-2.5 rounded-lg bg-navy-deep border border-navy-border text-electric-blue">
+              <Briefcase className="w-5 h-5" />
             </div>
             <div>
-              <div className="font-display font-bold text-canvas-white text-base sm:text-lg">
+              <div className="font-display font-semibold text-canvas-white text-base">
                 Human Resources @ Amrix
               </div>
               <div className="text-canvas-muted text-xs sm:text-sm">
-                Bridging organizational dynamics, talent empathy, and technical systems.
+                Active operational role bridging team coordination, operations, and technical workflow building.
               </div>
             </div>
           </div>
-          <div className="font-mono text-xs text-electric-cyan px-3.5 py-1.5 rounded-full border border-electric-blue/30 bg-electric-blue/5">
-            ORGANIZATIONAL LEADERSHIP
-          </div>
+          <span className="font-mono text-xs text-canvas-subtle">Current Position</span>
         </div>
       </div>
     </section>
   );
 }
-

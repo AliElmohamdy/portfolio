@@ -8,30 +8,25 @@ export function ProjectsSection({ limit }: { limit?: number }) {
   const displayedProjects = limit ? projectsData.slice(0, limit) : projectsData;
 
   return (
-    <section id="projects" className="py-24 sm:py-32 relative">
-      {/* Background divider line */}
-      <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-navy-border to-transparent" />
-
+    <section id="projects" className="py-20 sm:py-28 relative">
       <div className="max-w-7xl mx-auto px-6 sm:px-8">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 border-b border-navy-border/60 pb-8">
           <div>
-            <div className="inline-flex items-center gap-2 font-mono text-xs text-electric-blue uppercase tracking-[0.25em] mb-3">
-              <span className="w-2 h-2 rounded-full bg-electric-blue" />
-              <span>Selected Works</span>
-            </div>
-            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-canvas-white">
-              ENGINEERED ARTIFACTS.
+            <span className="text-xs font-mono uppercase tracking-wider text-canvas-subtle">
+              Selected Projects
+            </span>
+            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-canvas-white mt-1">
+              Featured Systems &amp; Builds
             </h2>
           </div>
           <p className="text-canvas-muted text-sm sm:text-base max-w-md font-sans">
-            Text-first, architectural project exhibits crafted through clean typography,
-            geometry, and technical precision.
+            Real production applications, discord systems, and client platforms built with Next.js, Node.js, and Python.
           </p>
         </div>
 
         {/* Project Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
           {displayedProjects.map((project, idx) => (
             <ProjectCard key={project.id} project={project} index={idx} />
           ))}
@@ -39,13 +34,13 @@ export function ProjectsSection({ limit }: { limit?: number }) {
 
         {/* Bottom CTA for full gallery if limited */}
         {limit && (
-          <div className="mt-14 text-center">
+          <div className="mt-12 text-center">
             <Link
               href="/projects"
-              className="group inline-flex items-center gap-2 px-6 py-3 rounded-full border border-navy-border bg-navy-surface/50 text-xs font-mono tracking-wider uppercase text-canvas-white hover:border-electric-blue hover:text-electric-blue transition-all"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-navy-border bg-navy-surface text-xs font-mono tracking-wider uppercase text-canvas-white hover:border-canvas-muted transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-electric-blue"
             >
-              <span>EXPLORE ALL ARCHITECTURES</span>
-              <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              <span>View All 4 Projects</span>
+              <ArrowUpRight className="w-4 h-4" />
             </Link>
           </div>
         )}

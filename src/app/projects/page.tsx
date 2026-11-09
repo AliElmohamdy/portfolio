@@ -5,24 +5,22 @@ import { ProjectsSection } from "@/components/projects/ProjectsSection";
 export const metadata: Metadata = {
   title: "Projects",
   description:
-    "Explore the four featured projects of Aly Elmohamdy — crafted through typography, geometry, and real-time motion.",
+    "Explore featured projects and systems developed by Aly Elmohamdy.",
 };
 
 export default function ProjectsPage() {
   return (
     <div className="pt-28 pb-16">
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 mb-8">
-        <div className="max-w-3xl">
-          <div className="inline-flex items-center gap-2 font-mono text-xs text-electric-blue uppercase tracking-[0.25em] mb-3">
-            <span className="w-2 h-2 rounded-full bg-electric-blue" />
-            <span>Complete Archive</span>
-          </div>
-          <h1 className="font-display text-4xl sm:text-6xl font-bold tracking-tight text-canvas-white">
-            PROJECT PORTFOLIO.
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 mb-4">
+        <div className="max-w-3xl border-b border-navy-border/60 pb-8">
+          <span className="text-xs font-mono uppercase tracking-wider text-canvas-subtle">
+            Archive
+          </span>
+          <h1 className="font-display text-4xl sm:text-6xl font-bold tracking-tight text-canvas-white mt-1">
+            Selected Works
           </h1>
-          <p className="mt-4 text-canvas-muted text-base sm:text-lg font-sans">
-            A pure typographic and architectural project exhibition. No mockups, no
-            stock imagery — only pure technical clarity and structure.
+          <p className="mt-3 text-canvas-muted text-base sm:text-lg font-sans">
+            A breakdown of completed platforms, automation systems, and applications with technical context and source details.
           </p>
         </div>
       </div>
@@ -31,4 +29,3 @@ export default function ProjectsPage() {
     </div>
   );
 }
-

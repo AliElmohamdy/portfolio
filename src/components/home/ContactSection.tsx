@@ -1,30 +1,15 @@
 "use client";
 
 import React, { useState } from "react";
-import dynamic from "next/dynamic";
 import { socialsData } from "@/data/socials";
-import { siteConfig } from "@/data/site";
+
 import {
   DiscordIcon,
   WhatsAppIcon,
   InstagramIcon,
   GitHubIcon,
 } from "@/components/icons/SocialIcons";
-import {
-  Send,
-  ArrowUpRight,
-  CheckCircle2,
-  AlertCircle,
-  Mail,
-} from "lucide-react";
-
-const ContactBackground3D = dynamic(
-  () =>
-    import("@/components/three/ContactBackground3D").then(
-      (mod) => mod.ContactBackground3D
-    ),
-  { ssr: false }
-);
+import { Send, ArrowUpRight, CheckCircle2, AlertCircle, Mail } from "lucide-react";
 
 export function ContactSection() {
   const [formData, setFormData] = useState({
@@ -38,21 +23,18 @@ export function ContactSection() {
   const [success, setSuccess] = useState(false);
   const [serverError, setServerError] = useState<string | null>(null);
 
-  // Return official authentic brand SVG icon
   const getPlatformIcon = (platform: string) => {
     switch (platform.toLowerCase()) {
       case "discord":
-        return <DiscordIcon className="w-5 h-5 text-[#5865F2]" />;
+        return <DiscordIcon className="w-4 h-4 text-[#5865F2]" />;
       case "whatsapp":
-        return <WhatsAppIcon className="w-5 h-5 text-[#25D366]" />;
+        return <WhatsAppIcon className="w-4 h-4 text-[#25D366]" />;
       case "instagram":
-        return <InstagramIcon className="w-5 h-5 text-[#E1306C]" />;
+        return <InstagramIcon className="w-4 h-4 text-[#E1306C]" />;
       case "github":
-        return <GitHubIcon className="w-5 h-5 text-canvas-white" />;
-      case "email":
-        return <Mail className="w-5 h-5 text-electric-blue" />;
+        return <GitHubIcon className="w-4 h-4 text-canvas-white" />;
       default:
-        return <Mail className="w-5 h-5 text-electric-blue" />;
+        return <Mail className="w-4 h-4 text-electric-blue" />;
     }
   };
 
@@ -81,224 +63,178 @@ export function ContactSection() {
         setFormData({ name: "", email: "", subject: "", message: "" });
       }
     } catch {
-      setServerError("Network failure. Please check your connection.");
+      setServerError("Network connection error. Please try direct email or WhatsApp.");
     } finally {
       setSubmitting(false);
     }
   };
 
   return (
-    <section id="contact" className="py-24 sm:py-32 relative overflow-hidden">
-      {/* 3D Wireframe Orbit Atmosphere */}
-      <ContactBackground3D />
+    <section id="contact" className="py-20 sm:py-28 relative border-t border-navy-border/60">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8">
+        {/* Section Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 border-b border-navy-border/60 pb-8">
+          <div>
+            <span className="text-xs font-mono uppercase tracking-wider text-canvas-subtle">
+              Inquiries
+            </span>
+            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-canvas-white mt-1">
+              Start a Conversation
+            </h2>
+          </div>
+          <p className="text-canvas-muted text-sm sm:text-base max-w-md font-sans">
+            Have a project, custom automation, or engineering inquiry? Reach out directly via message or form.
+          </p>
+        </div>
 
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
-          {/* Left Column: Vision & Socials */}
-          <div className="lg:col-span-5 flex flex-col justify-between h-full">
-            <div>
-              <div className="inline-flex items-center gap-2 font-mono text-xs text-electric-blue uppercase tracking-[0.25em] mb-4">
-                <span className="w-2 h-2 rounded-full bg-electric-blue" />
-                <span>Direct Dispatch & Connect</span>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+          {/* Direct channels */}
+          <div className="lg:col-span-5 flex flex-col justify-between space-y-8">
+            <div className="space-y-6">
+              <div className="space-y-2">
+                <h3 className="font-display text-xl font-bold text-canvas-white">
+                  Direct Channels
+                </h3>
+                <p className="text-canvas-muted text-sm leading-relaxed font-sans">
+                  Fastest response times via WhatsApp or Discord for real-time discussion.
+                </p>
               </div>
-              <h2 className="font-display text-4xl sm:text-5xl font-extrabold tracking-tight text-canvas-white leading-tight">
-                HAVE AN IDEA? <br />
-                <span className="text-electric-blue">LET&apos;S BUILD IT.</span>
-              </h2>
-              <p className="mt-5 text-canvas-muted text-base leading-relaxed font-sans">
-                Whether you need a high-performance web platform, an automated Discord
-                bot system, or custom backend services, I am ready to collaborate.
-              </p>
 
-              {/* Direct Quick Contact Buttons */}
-              <div className="mt-8 flex flex-wrap gap-3">
-                <a
-                  href={siteConfig.whatsappUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-[#25D366]/10 border border-[#25D366]/30 text-[#25D366] hover:bg-[#25D366]/20 text-xs font-mono tracking-wider transition-all shadow-[0_0_15px_rgba(37,211,102,0.15)]"
-                >
-                  <WhatsAppIcon className="w-4 h-4" />
-                  <span>WhatsApp: {siteConfig.whatsapp}</span>
-                </a>
-                <a
-                  href={siteConfig.discordUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-[#5865F2]/10 border border-[#5865F2]/30 text-[#7983F5] hover:bg-[#5865F2]/20 text-xs font-mono tracking-wider transition-all shadow-[0_0_15px_rgba(88,101,242,0.15)]"
-                >
-                  <DiscordIcon className="w-4 h-4" />
-                  <span>Discord Chat</span>
-                </a>
-                <a
-                  href={`mailto:${siteConfig.email}`}
-                  className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-electric-blue/10 border border-electric-blue/30 text-electric-cyan hover:bg-electric-blue/20 text-xs font-mono tracking-wider transition-all"
-                >
-                  <Mail className="w-4 h-4" />
-                  <span>{siteConfig.email}</span>
-                </a>
-              </div>
-            </div>
-
-            {/* Social Channels List with Official Icons */}
-            <div className="mt-12 pt-8 border-t border-navy-border/50">
-              <span className="text-xs font-mono uppercase tracking-[0.2em] text-canvas-subtle block mb-4">
-                Official Channels & Direct Chat
-              </span>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div className="space-y-3">
                 {socialsData.map((social) => (
                   <a
                     key={social.platform}
                     href={social.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group p-3.5 rounded-2xl border border-navy-border/60 bg-navy-surface/30 hover:border-electric-blue/40 hover:bg-navy-surface/60 transition-all flex items-center justify-between"
+                    className="flex items-center justify-between p-4 rounded-xl border border-navy-border bg-navy-surface hover:border-canvas-subtle transition-colors group"
                   >
                     <div className="flex items-center gap-3">
-                      <div className="p-2.5 rounded-xl bg-navy-deep border border-navy-border/70 group-hover:border-electric-blue/40 transition-colors flex items-center justify-center">
+                      <div className="p-2 rounded-lg bg-navy-deep border border-navy-border">
                         {getPlatformIcon(social.platform)}
                       </div>
                       <div>
-                        <span className="font-display text-sm font-semibold text-canvas-white group-hover:text-electric-cyan block transition-colors">
+                        <div className="font-display font-semibold text-sm text-canvas-white">
                           {social.platform}
-                        </span>
-                        <span className="font-mono text-[11px] text-canvas-subtle truncate block max-w-[120px]">
+                        </div>
+                        <div className="text-xs text-canvas-muted font-mono">
                           {social.handle}
-                        </span>
+                        </div>
                       </div>
                     </div>
-                    <ArrowUpRight className="w-4 h-4 text-canvas-subtle group-hover:text-electric-blue group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                    <ArrowUpRight className="w-4 h-4 text-canvas-subtle group-hover:text-canvas-white transition-colors" />
                   </a>
                 ))}
               </div>
             </div>
+
+
           </div>
 
-          {/* Right Column: Interactive Secure Form */}
+          {/* Contact form */}
           <div className="lg:col-span-7">
-            <div className="rounded-3xl border border-navy-border/80 bg-navy-deep/80 backdrop-blur-xl p-8 sm:p-10 shadow-[0_10px_40px_rgba(0,0,0,0.5)]">
+            <div className="rounded-xl border border-navy-border bg-navy-surface p-7 sm:p-9">
               {success ? (
                 <div className="py-12 text-center space-y-4">
-                  <div className="w-14 h-14 rounded-full bg-electric-blue/10 border border-electric-blue/30 text-electric-blue flex items-center justify-center mx-auto">
-                    <CheckCircle2 className="w-7 h-7" />
-                  </div>
-                  <h3 className="font-display text-2xl font-bold text-canvas-white">
-                    Message Transmitted
+                  <CheckCircle2 className="w-10 h-10 text-emerald-400 mx-auto" />
+                  <h3 className="font-display text-xl font-bold text-canvas-white">
+                    Message Received
                   </h3>
-                  <p className="text-canvas-muted text-sm max-w-md mx-auto">
-                    Thank you for reaching out. Your transmission has been recorded, and
-                    I will review your inquiry shortly.
+                  <p className="text-canvas-muted text-sm max-w-md mx-auto font-sans">
+                    Thank you for reaching out. I will review your message and reply via email within 24 hours.
                   </p>
                   <button
                     onClick={() => setSuccess(false)}
-                    className="mt-4 px-6 py-2.5 rounded-full border border-navy-border font-mono text-xs text-canvas-white hover:border-electric-blue"
+                    className="mt-4 px-5 py-2 rounded-lg border border-navy-border text-xs font-mono text-canvas-white hover:border-canvas-muted transition-colors"
                   >
-                    Send Another Transmission
+                    Send another message
                   </button>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form onSubmit={handleSubmit} className="space-y-5">
                   {serverError && (
-                    <div className="p-4 rounded-xl bg-red-500/10 border border-red-500/30 text-red-300 text-xs flex items-center gap-2">
+                    <div className="p-3.5 rounded-lg border border-red-500/30 bg-red-500/10 text-red-300 text-xs flex items-center gap-2">
                       <AlertCircle className="w-4 h-4 shrink-0" />
                       <span>{serverError}</span>
                     </div>
                   )}
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                    <div>
-                      <label className="block text-xs font-mono uppercase tracking-wider text-canvas-muted mb-2">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    <div className="space-y-1.5">
+                      <label className="block text-xs font-mono uppercase text-canvas-subtle">
                         Your Name
                       </label>
                       <input
                         type="text"
                         required
                         value={formData.name}
-                        onChange={(e) =>
-                          setFormData({ ...formData, name: e.target.value })
-                        }
-                        placeholder="e.g. Alex Morgan"
-                        className="w-full px-4 py-3 rounded-xl bg-navy-surface/80 border border-navy-border text-canvas-white placeholder:text-canvas-subtle/50 text-sm focus:outline-none focus:border-electric-blue focus:ring-1 focus:ring-electric-blue transition-colors"
+                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                        placeholder="Name"
+                        className="w-full px-3.5 py-2.5 rounded-lg bg-navy-deep border border-navy-border text-sm text-canvas-white placeholder:text-canvas-subtle focus:border-electric-blue focus:outline-none transition-colors"
                       />
                       {errors.name && (
-                        <span className="text-[11px] text-red-400 mt-1 block">
-                          {errors.name[0]}
-                        </span>
+                        <p className="text-xs text-red-400">{errors.name[0]}</p>
                       )}
                     </div>
 
-                    <div>
-                      <label className="block text-xs font-mono uppercase tracking-wider text-canvas-muted mb-2">
+                    <div className="space-y-1.5">
+                      <label className="block text-xs font-mono uppercase text-canvas-subtle">
                         Email Address
                       </label>
                       <input
                         type="email"
                         required
                         value={formData.email}
-                        onChange={(e) =>
-                          setFormData({ ...formData, email: e.target.value })
-                        }
-                        placeholder="e.g. alex@example.com"
-                        className="w-full px-4 py-3 rounded-xl bg-navy-surface/80 border border-navy-border text-canvas-white placeholder:text-canvas-subtle/50 text-sm focus:outline-none focus:border-electric-blue focus:ring-1 focus:ring-electric-blue transition-colors"
+                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        placeholder="you@domain.com"
+                        className="w-full px-3.5 py-2.5 rounded-lg bg-navy-deep border border-navy-border text-sm text-canvas-white placeholder:text-canvas-subtle focus:border-electric-blue focus:outline-none transition-colors"
                       />
                       {errors.email && (
-                        <span className="text-[11px] text-red-400 mt-1 block">
-                          {errors.email[0]}
-                        </span>
+                        <p className="text-xs text-red-400">{errors.email[0]}</p>
                       )}
                     </div>
                   </div>
 
-                  <div>
-                    <label className="block text-xs font-mono uppercase tracking-wider text-canvas-muted mb-2">
+                  <div className="space-y-1.5">
+                    <label className="block text-xs font-mono uppercase text-canvas-subtle">
                       Subject
                     </label>
                     <input
                       type="text"
                       required
                       value={formData.subject}
-                      onChange={(e) =>
-                        setFormData({ ...formData, subject: e.target.value })
-                      }
-                      placeholder="Project Inquiry / Bot Development / Collaboration"
-                      className="w-full px-4 py-3 rounded-xl bg-navy-surface/80 border border-navy-border text-canvas-white placeholder:text-canvas-subtle/50 text-sm focus:outline-none focus:border-electric-blue focus:ring-1 focus:ring-electric-blue transition-colors"
+                      onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                      placeholder="Project inquiry / Bot development / Consultation"
+                      className="w-full px-3.5 py-2.5 rounded-lg bg-navy-deep border border-navy-border text-sm text-canvas-white placeholder:text-canvas-subtle focus:border-electric-blue focus:outline-none transition-colors"
                     />
                     {errors.subject && (
-                      <span className="text-[11px] text-red-400 mt-1 block">
-                        {errors.subject[0]}
-                      </span>
+                      <p className="text-xs text-red-400">{errors.subject[0]}</p>
                     )}
                   </div>
 
-                  <div>
-                    <label className="block text-xs font-mono uppercase tracking-wider text-canvas-muted mb-2">
-                      Message
+                  <div className="space-y-1.5">
+                    <label className="block text-xs font-mono uppercase text-canvas-subtle">
+                      Project Details
                     </label>
                     <textarea
-                      rows={5}
                       required
+                      rows={5}
                       value={formData.message}
-                      onChange={(e) =>
-                        setFormData({ ...formData, message: e.target.value })
-                      }
-                      placeholder="Describe your project, objectives, and timeline..."
-                      className="w-full px-4 py-3 rounded-xl bg-navy-surface/80 border border-navy-border text-canvas-white placeholder:text-canvas-subtle/50 text-sm focus:outline-none focus:border-electric-blue focus:ring-1 focus:ring-electric-blue transition-colors resize-none"
+                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                      placeholder="Outline your requirements, timeline, or what you want to build."
+                      className="w-full px-3.5 py-2.5 rounded-lg bg-navy-deep border border-navy-border text-sm text-canvas-white placeholder:text-canvas-subtle focus:border-electric-blue focus:outline-none transition-colors resize-none"
                     />
                     {errors.message && (
-                      <span className="text-[11px] text-red-400 mt-1 block">
-                        {errors.message[0]}
-                      </span>
+                      <p className="text-xs text-red-400">{errors.message[0]}</p>
                     )}
                   </div>
 
                   <button
                     type="submit"
                     disabled={submitting}
-                    className="w-full py-4 rounded-xl bg-electric-blue hover:bg-electric-cyan text-obsidian font-mono text-xs font-bold tracking-wider uppercase transition-all duration-300 flex items-center justify-center gap-2 shadow-[0_0_25px_rgba(87,200,255,0.3)] disabled:opacity-50"
+                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-electric-blue text-obsidian font-mono text-xs font-bold uppercase tracking-wider transition-colors hover:bg-white disabled:opacity-50"
                   >
-                    <span>
-                      {submitting ? "TRANSMITTING..." : "TRANSMIT MESSAGE"}
-                    </span>
+                    <span>{submitting ? "Sending..." : "Send Message"}</span>
                     <Send className="w-3.5 h-3.5" />
                   </button>
                 </form>

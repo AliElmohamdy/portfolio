@@ -8,9 +8,8 @@ import { Menu, X, ArrowUpRight } from "lucide-react";
 
 const NAV_ITEMS = [
   { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
   { label: "Projects", href: "/projects" },
-  { label: "Skills", href: "/#skills" },
+  { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -21,7 +20,7 @@ export function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      setScrolled(window.scrollY > 15);
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
@@ -29,48 +28,46 @@ export function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-200 border-b ${
         scrolled
-          ? "bg-obsidian/85 backdrop-blur-md border-b border-navy-border/60 py-3.5 shadow-[0_4px_30px_rgba(0,0,0,0.5)]"
-          : "bg-transparent py-5"
+          ? "bg-obsidian/95 border-navy-border backdrop-blur-sm py-3"
+          : "bg-obsidian/60 border-transparent py-4"
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 sm:px-8 flex items-center justify-between">
-        {/* Left: Brand Monogram + Name */}
+        {/* Brand */}
         <Link
           href="/"
-          className="group flex items-center gap-3 transition-transform duration-300 hover:scale-[1.02]"
+          className="flex items-center gap-2.5 text-canvas-white hover:text-electric-blue transition-colors"
           aria-label="Aly Elmohamdy Home"
         >
-          <AeLogo variant="primary" size={32} />
+          <AeLogo variant="primary" size={28} />
           <div className="flex flex-col">
-            <span className="font-display font-bold tracking-[0.22em] text-sm text-canvas-white group-hover:text-electric-blue transition-colors">
+            <span className="font-display font-bold tracking-wider text-sm">
               ALY ELMOHAMDY
             </span>
-            <span className="font-mono text-[9px] tracking-[0.25em] text-canvas-muted uppercase">
-              BEYOND CODE
+            <span className="font-mono text-[10px] text-canvas-subtle">
+              DEVELOPER &amp; BUILDER
             </span>
           </div>
         </Link>
 
-        {/* Center / Right Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-1.5 bg-navy-surface/50 backdrop-blur-xl px-4 py-1.5 rounded-full border border-white/[0.08] shadow-[0_8px_32px_rgba(0,0,0,0.3)]">
+        {/* Desktop Navigation */}
+        <nav className="hidden md:flex items-center gap-1">
           {NAV_ITEMS.map((item) => {
             const isActive =
               item.href === "/"
                 ? pathname === "/"
-                : item.href.startsWith("/#")
-                ? false
                 : pathname.startsWith(item.href);
 
             return (
               <Link
                 key={item.href}
                 href={item.href}
-                className={`relative px-4 py-1.5 text-xs font-mono tracking-wider transition-all duration-200 rounded-full ${
+                className={`px-3 py-1.5 text-xs font-mono tracking-wider transition-colors rounded-md ${
                   isActive
-                    ? "text-electric-blue font-semibold bg-electric-blue/15 shadow-[0_0_12px_rgba(56,189,248,0.25)]"
-                    : "text-canvas-muted hover:text-canvas-white hover:bg-white/[0.05]"
+                    ? "text-canvas-white bg-navy-surface font-semibold"
+                    : "text-canvas-muted hover:text-canvas-white hover:bg-navy-surface/50"
                 }`}
               >
                 {item.label}
@@ -79,53 +76,50 @@ export function Navbar() {
           })}
         </nav>
 
-        {/* Right CTA */}
-        <div className="hidden md:flex items-center gap-4">
+        {/* CTA */}
+        <div className="hidden md:flex items-center gap-3">
           <Link
             href="/contact"
-            className="group relative inline-flex items-center gap-2 px-5 py-2 rounded-full text-xs font-mono tracking-wider uppercase bg-gradient-to-r from-electric-blue to-electric-cyan text-obsidian font-extrabold overflow-hidden transition-all duration-300 hover:shadow-[0_0_25px_rgba(56,189,248,0.45)] hover:scale-[1.03]"
+            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-electric-blue text-obsidian font-mono text-xs font-bold uppercase tracking-wider transition-colors hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-electric-blue"
           >
-            <span>LET&apos;S TALK</span>
-            <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            <span>Let&apos;s Talk</span>
+            <ArrowUpRight className="w-3.5 h-3.5" />
           </Link>
         </div>
 
-        {/* Mobile Hamburger Button */}
+        {/* Mobile button */}
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="md:hidden p-2 rounded-lg text-canvas-white hover:text-electric-blue hover:bg-navy-surface transition-colors"
+          className="md:hidden p-2 rounded-lg text-canvas-white hover:bg-navy-surface transition-colors"
           aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
         >
-          {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
         </button>
       </div>
 
-      {/* Mobile Menu Dropdown */}
+      {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-navy-deep/95 backdrop-blur-xl border-b border-navy-border/80 px-6 py-6 transition-all duration-300">
-          <div className="flex flex-col gap-3">
-            {NAV_ITEMS.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                onClick={() => setMobileMenuOpen(false)}
-                className="px-4 py-3 text-sm font-mono tracking-wider text-canvas-white hover:text-electric-blue hover:bg-navy-surface/60 rounded-lg transition-colors"
-              >
-                {item.label}
-              </Link>
-            ))}
+        <div className="md:hidden bg-obsidian border-b border-navy-border px-6 py-4 flex flex-col gap-2">
+          {NAV_ITEMS.map((item) => (
             <Link
-              href="/contact"
+              key={item.href}
+              href={item.href}
               onClick={() => setMobileMenuOpen(false)}
-              className="mt-3 inline-flex items-center justify-center gap-2 py-3 rounded-lg text-xs font-mono tracking-wider uppercase bg-electric-blue text-obsidian font-bold"
+              className="py-2 text-sm font-mono text-canvas-muted hover:text-canvas-white"
             >
-              <span>LET&apos;S TALK</span>
-              <ArrowUpRight className="w-4 h-4" />
+              {item.label}
             </Link>
-          </div>
+          ))}
+          <Link
+            href="/contact"
+            onClick={() => setMobileMenuOpen(false)}
+            className="mt-2 inline-flex items-center justify-center gap-1.5 py-2.5 rounded-lg bg-electric-blue text-obsidian font-mono text-xs font-bold uppercase"
+          >
+            <span>Let&apos;s Talk</span>
+            <ArrowUpRight className="w-3.5 h-3.5" />
+          </Link>
         </div>
       )}
     </header>
   );
 }
-

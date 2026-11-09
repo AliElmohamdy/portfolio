@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { siteConfig } from "@/data/site";
-import { GitFork, Star, ExternalLink, Code, AlertCircle } from "lucide-react";
+import { Star, GitFork, ExternalLink, AlertCircle } from "lucide-react";
 
 interface Repository {
   id: number;
@@ -42,27 +42,26 @@ export function GithubSection() {
   }, []);
 
   return (
-    <section className="py-24 sm:py-32 relative bg-navy-deep/20 border-t border-navy-border/40">
+    <section className="py-20 sm:py-28 relative border-t border-navy-border/60">
       <div className="max-w-7xl mx-auto px-6 sm:px-8">
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 border-b border-navy-border/60 pb-8">
           <div>
-            <div className="inline-flex items-center gap-2 font-mono text-xs text-electric-blue uppercase tracking-[0.25em] mb-3">
-              <span className="w-2 h-2 rounded-full bg-electric-blue" />
-              <span>Public Activity</span>
-            </div>
-            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-canvas-white">
-              GITHUB ECOSYSTEM.
+            <span className="text-xs font-mono uppercase tracking-wider text-canvas-subtle">
+              Open Source
+            </span>
+            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-canvas-white mt-1">
+              GitHub Repositories
             </h2>
           </div>
           <a
             href={siteConfig.githubUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-navy-border/80 bg-navy-surface/50 text-xs font-mono tracking-wider text-canvas-white hover:text-electric-blue hover:border-electric-blue/50 transition-all"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-navy-border bg-navy-surface text-xs font-mono tracking-wider text-canvas-white hover:border-canvas-muted transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-electric-blue"
           >
-            <span>VIEW @{siteConfig.githubUsername}</span>
-            <ExternalLink className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            <span>View @{siteConfig.githubUsername}</span>
+            <ExternalLink className="w-3.5 h-3.5" />
           </a>
         </div>
 
@@ -72,22 +71,21 @@ export function GithubSection() {
             {[1, 2, 3].map((n) => (
               <div
                 key={n}
-                className="h-44 rounded-2xl border border-navy-border/40 bg-navy-surface/20 animate-pulse p-6"
+                className="h-40 rounded-xl border border-navy-border bg-navy-surface animate-pulse p-6"
               />
             ))}
           </div>
         )}
 
-        {/* Error / Rate Limit Graceful Fallback */}
+        {/* Error Fallback */}
         {error && !loading && (
-          <div className="rounded-2xl border border-navy-border/60 bg-navy-surface/40 p-8 text-center max-w-xl mx-auto">
-            <AlertCircle className="w-8 h-8 text-electric-blue mx-auto mb-3" />
-            <h3 className="font-display text-lg font-bold text-canvas-white mb-2">
-              GitHub Rate Limit / Offline State
+          <div className="rounded-xl border border-navy-border bg-navy-surface p-8 text-center max-w-xl mx-auto">
+            <AlertCircle className="w-6 h-6 text-canvas-subtle mx-auto mb-3" />
+            <h3 className="font-display text-base font-bold text-canvas-white mb-2">
+              GitHub Activity
             </h3>
             <p className="text-canvas-muted text-xs leading-relaxed mb-4">
-              Real-time API rate limits or network limits reached. You can visit the
-              verified public profile directly on GitHub.
+              Real-time API rate limits reached or offline. You can view the full repository list directly on GitHub.
             </p>
             <a
               href={siteConfig.githubUrl}
@@ -95,41 +93,37 @@ export function GithubSection() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-electric-blue text-obsidian text-xs font-mono font-bold"
             >
-              <span>Visit GitHub Profile</span>
+              <span>Open GitHub Profile</span>
               <ExternalLink className="w-3.5 h-3.5" />
             </a>
           </div>
         )}
 
-        {/* Repositories Grid */}
-        {!loading && !error && repos.length > 0 && (
+        {/* Active Grid */}
+        {!loading && !error && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {repos.map((repo) => (
+            {repos.slice(0, 6).map((repo) => (
               <a
                 key={repo.id}
                 href={repo.html_url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group rounded-2xl border border-navy-border/60 bg-navy-surface/30 backdrop-blur-md p-6 hover:border-electric-blue/40 hover:bg-navy-surface/60 transition-all duration-300 flex flex-col justify-between"
+                className="group rounded-xl border border-navy-border bg-navy-surface p-6 flex flex-col justify-between hover:border-canvas-subtle transition-colors"
               >
                 <div>
                   <div className="flex items-center justify-between mb-3">
-                    <span className="font-mono text-xs text-electric-blue">REPO</span>
-                    <ExternalLink className="w-3.5 h-3.5 text-canvas-subtle group-hover:text-electric-blue transition-colors" />
+                    <h3 className="font-mono text-sm font-semibold text-canvas-white group-hover:text-electric-blue transition-colors truncate">
+                      {repo.name}
+                    </h3>
+                    <ExternalLink className="w-3.5 h-3.5 text-canvas-subtle group-hover:text-canvas-white transition-colors shrink-0 ml-2" />
                   </div>
-                  <h3 className="font-display text-base font-bold text-canvas-white group-hover:text-electric-cyan transition-colors mb-2 break-all">
-                    {repo.name}
-                  </h3>
-                  <p className="text-canvas-muted text-xs leading-relaxed line-clamp-2">
-                    {repo.description || "Public repository repository code."}
+                  <p className="text-canvas-muted text-xs leading-relaxed line-clamp-3 mb-4 font-sans">
+                    {repo.description || "Active software repository maintained by Aly Elmohamdy."}
                   </p>
                 </div>
 
-                <div className="mt-6 pt-4 border-t border-navy-border/30 flex items-center justify-between text-xs font-mono text-canvas-subtle">
-                  <div className="flex items-center gap-1.5">
-                    <Code className="w-3.5 h-3.5 text-electric-blue" />
-                    <span>{repo.language || "Code"}</span>
-                  </div>
+                <div className="flex items-center justify-between text-xs font-mono text-canvas-subtle pt-3 border-t border-navy-border/60">
+                  <span>{repo.language || "TypeScript"}</span>
                   <div className="flex items-center gap-3">
                     <span className="flex items-center gap-1">
                       <Star className="w-3 h-3 text-canvas-subtle" />
@@ -145,15 +139,7 @@ export function GithubSection() {
             ))}
           </div>
         )}
-
-        {/* Empty state if user has no public repos */}
-        {!loading && !error && repos.length === 0 && (
-          <div className="rounded-2xl border border-navy-border/60 bg-navy-surface/30 p-8 text-center text-canvas-muted text-sm font-mono">
-            No public repositories found for @{siteConfig.githubUsername}.
-          </div>
-        )}
       </div>
     </section>
   );
 }
-

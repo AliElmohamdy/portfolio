@@ -14,35 +14,33 @@ export function SkillsSection() {
       : skillCategoriesData.filter((c) => c.title === selectedCategory);
 
   return (
-    <section id="skills" className="py-24 sm:py-32 relative bg-navy-deep/40">
+    <section id="skills" className="py-20 sm:py-28 relative border-t border-navy-border/60">
       <div className="max-w-7xl mx-auto px-6 sm:px-8">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 border-b border-navy-border/60 pb-8">
           <div>
-            <div className="inline-flex items-center gap-2 font-mono text-xs text-electric-blue uppercase tracking-[0.25em] mb-3">
-              <span className="w-2 h-2 rounded-full bg-electric-blue" />
-              <span>Verified Tech Stack</span>
-            </div>
-            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-canvas-white">
-              CORE CAPABILITIES.
+            <span className="text-xs font-mono uppercase tracking-wider text-canvas-subtle">
+              Tooling &amp; Stack
+            </span>
+            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-canvas-white mt-1">
+              Technical Capabilities
             </h2>
           </div>
           <p className="text-canvas-muted text-sm sm:text-base max-w-md font-sans">
-            Directly mapped from verified development projects and production builds.
-            Zero arbitrary skill percentages.
+            Languages, libraries, and frameworks applied across verified production repositories and builds.
           </p>
         </div>
 
         {/* Filter Pills */}
-        <div className="flex flex-wrap gap-2 mb-10 pb-4 border-b border-navy-border/40">
+        <div className="flex flex-wrap gap-2 mb-8">
           {categories.map((cat) => (
             <button
               key={cat}
               onClick={() => setSelectedCategory(cat)}
-              className={`px-3.5 py-1.5 rounded-full text-xs font-mono tracking-wider transition-all duration-200 ${
+              className={`px-3.5 py-1.5 rounded-lg text-xs font-mono tracking-wider transition-colors ${
                 selectedCategory === cat
-                  ? "bg-electric-blue text-obsidian font-bold shadow-[0_0_15px_rgba(87,200,255,0.3)]"
-                  : "bg-navy-surface/60 text-canvas-muted hover:text-canvas-white hover:bg-navy-surface border border-navy-border/60"
+                  ? "bg-electric-blue text-obsidian font-bold"
+                  : "bg-navy-surface text-canvas-muted hover:text-canvas-white border border-navy-border"
               }`}
             >
               {cat}
@@ -55,32 +53,27 @@ export function SkillsSection() {
           {displayedCategories.map((group) => (
             <div
               key={group.title}
-              className="rounded-2xl border border-navy-border/60 bg-navy-surface/30 backdrop-blur-md p-6 hover:border-electric-blue/40 transition-all duration-300 flex flex-col justify-between"
+              className="rounded-xl border border-navy-border bg-navy-surface p-6 flex flex-col justify-between"
             >
               <div>
-                <div className="flex items-center justify-between mb-3">
-                  <h3 className="font-display text-base font-bold text-canvas-white">
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="font-display text-lg font-bold text-canvas-white">
                     {group.title}
                   </h3>
-                  <span className="font-mono text-[11px] text-electric-blue">
-                    {group.skills.length} techs
+                  <span className="font-mono text-xs text-canvas-subtle">
+                    {group.skills.length} tools
                   </span>
                 </div>
-                <p className="text-canvas-muted text-xs leading-relaxed mb-5 font-sans">
-                  {group.description}
-                </p>
-              </div>
-
-              <div className="flex flex-wrap gap-2 pt-4 border-t border-navy-border/30">
-                {group.skills.map((skill) => (
-                  <span
-                    key={skill}
-                    className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-mono bg-navy-deep/80 border border-navy-border/70 text-canvas-white hover:border-electric-blue/50 hover:text-electric-cyan transition-colors"
-                  >
-                    <span className="w-1.5 h-1.5 rounded-full bg-electric-blue/70" />
-                    <span>{skill}</span>
-                  </span>
-                ))}
+                <div className="flex flex-wrap gap-2">
+                  {group.skills.map((skill) => (
+                    <span
+                      key={skill}
+                      className="px-2.5 py-1 rounded text-xs font-mono bg-navy-deep border border-navy-border text-canvas-muted"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
           ))}
@@ -89,4 +82,3 @@ export function SkillsSection() {
     </section>
   );
 }
-
